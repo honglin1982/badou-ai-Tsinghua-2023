@@ -30,6 +30,8 @@ class CPCA(object):
         '''矩阵X的中心化'''
         print('样本矩阵X:\n', self.X)
         centrX = []
+        print('self.X.T::::::::::::::')
+        print(self.X.T)
         mean = np.array([np.mean(attr) for attr in self.X.T]) #样本集的特征均值
         print('样本集的特征均值:\n',mean)
         centrX = self.X - mean ##样本集的中心化
@@ -40,6 +42,11 @@ class CPCA(object):
         '''求样本矩阵X的协方差矩阵C'''
         #样本集的样例总数
         ns = np.shape(self.centrX)[0]
+        print('==================')
+        print(ns)
+        print("********************************************")
+        print(np.dot(self.centrX.T, self.centrX))
+        print("********************************************")
         #样本矩阵的协方差矩阵C
         C = np.dot(self.centrX.T, self.centrX)/(ns - 1)
         print('样本矩阵X的协方差矩阵C:\n', C)
@@ -53,9 +60,16 @@ class CPCA(object):
         print('样本集的协方差矩阵C的特征向量:\n', b)
         #给出特征值降序的topK的索引序列
         ind = np.argsort(-1*a)
+        print('#################################################')
+        print(ind)
+        print('#################################################')
         #构建K阶降维的降维转换矩阵U
         UT = [b[:,ind[i]] for i in range(self.K)]
+        print('++++++++++++++++++++++++++++++++++++')
+        print(UT)
+        print('++++++++++++++++++++++++++++++++++++')
         U = np.transpose(UT)
+        print(U)
         print('%d阶降维转换矩阵U:\n'%self.K, U)
         return U
         
