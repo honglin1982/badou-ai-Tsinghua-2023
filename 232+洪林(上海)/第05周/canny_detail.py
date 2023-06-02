@@ -5,8 +5,11 @@ import math
 if __name__ == '__main__':
     pic_path = 'lenna.png' 
     img = plt.imread(pic_path)
+    # print(img)
+    print(img.shape)
     if pic_path[-4:] == '.png':  # .png图片在这里的存储格式是0到1的浮点数，所以要扩展到255再计算
         img = img * 255  # 还是浮点数类型
+        # print(img)
     img = img.mean(axis=-1)  # 取均值就是灰度化了
  
     # 1、高斯平滑
@@ -56,7 +59,7 @@ if __name__ == '__main__':
     img_yizhi = np.zeros(img_tidu.shape)
     for i in range(1, dx-1):
         for j in range(1, dy-1):
-            flag = True  # 在8邻域内是否要抹去做个标记
+            flag = True  # 在8邻域内是否要抹去做个标记。 True抹去；False不需要抹去
             temp = img_tidu[i-1:i+2, j-1:j+2]  # 梯度幅值的8邻域矩阵
             if angle[i, j] <= -1:  # 使用线性插值法判断抑制与否
                 num_1 = (temp[0, 1] - temp[0, 0]) / angle[i, j] + temp[0, 1]
