@@ -6,27 +6,47 @@ if __name__ == '__main__':
     pic_path = 'lenna.png' 
     img = plt.imread(pic_path)
     # print(img)
-    print(img.shape)
+    # print(img.shape)
     if pic_path[-4:] == '.png':  # .png图片在这里的存储格式是0到1的浮点数，所以要扩展到255再计算
         img = img * 255  # 还是浮点数类型
         # print(img)
     img = img.mean(axis=-1)  # 取均值就是灰度化了
- 
+    # print(img)
+
     # 1、高斯平滑
     #sigma = 1.52  # 高斯平滑时的高斯核参数，标准差，可调
     sigma = 0.5  # 高斯平滑时的高斯核参数，标准差，可调
+    #3sigma原则，在-3sigma到3sigma窗口之间占大部分信息，所以取6sigma，核一般为奇数，所以是6sigma+1
     dim = int(np.round(6 * sigma + 1))  # round是四舍五入函数，根据标准差求高斯核是几乘几的，也就是维度
+    print("dim = ", dim)
+
     if dim % 2 == 0:  # 最好是奇数,不是的话加一
         dim += 1
     Gaussian_filter = np.zeros([dim, dim])  # 存储高斯核，这是数组不是列表了
+    print("dim = ", dim)
     tmp = [i-dim//2 for i in range(dim)]  # 生成一个序列
+    print(tmp)
+
+    print("# 计算高斯核")
     n1 = 1/(2*math.pi*sigma**2)  # 计算高斯核
     n2 = -1/(2*sigma**2)
+    print(n1)
+    print(n2)
+    print("--------------------------")
     for i in range(dim):
         for j in range(dim):
             Gaussian_filter[i, j] = n1*math.exp(n2*(tmp[i]**2+tmp[j]**2))
+    print(Gaussian_filter)
+    print("++++++++++++++++++++++++++++++")
+    print("Gaussian_filter.sum() = ")
+    print(Gaussian_filter.sum())
+    print("++++++++++++++++++++++++++++++")
     Gaussian_filter = Gaussian_filter / Gaussian_filter.sum()
+    print(Gaussian_filter)
+    print("++++++++++++++++++++++++++++++")
     dx, dy = img.shape
+    print(img.shape)
+    print("00000000000000000000000000000000000000")
     img_new = np.zeros(img.shape)  # 存储平滑之后的图像，zeros函数得到的是浮点型数据
     tmp = dim//2
     img_pad = np.pad(img, ((tmp, tmp), (tmp, tmp)), 'constant')  # 边缘填补
