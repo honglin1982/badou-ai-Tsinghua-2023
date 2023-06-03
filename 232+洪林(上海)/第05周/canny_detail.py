@@ -134,28 +134,28 @@ if __name__ == '__main__':
         a = img_yizhi[temp_1-1:temp_1+2, temp_2-1:temp_2+2]
         if (a[0, 0] < high_boundary) and (a[0, 0] > lower_boundary):
             img_yizhi[temp_1-1, temp_2-1] = 255  # 这个像素点标记为边缘
-            zhan.append([temp_1-1, temp_2-1])  # 进栈
+            # zhan.append([temp_1-1, temp_2-1])  # 进栈
         if (a[0, 1] < high_boundary) and (a[0, 1] > lower_boundary):
             img_yizhi[temp_1 - 1, temp_2] = 255
-            zhan.append([temp_1 - 1, temp_2])
+            # zhan.append([temp_1 - 1, temp_2])
         if (a[0, 2] < high_boundary) and (a[0, 2] > lower_boundary):
             img_yizhi[temp_1 - 1, temp_2 + 1] = 255
-            zhan.append([temp_1 - 1, temp_2 + 1])
+            # zhan.append([temp_1 - 1, temp_2 + 1])
         if (a[1, 0] < high_boundary) and (a[1, 0] > lower_boundary):
             img_yizhi[temp_1, temp_2 - 1] = 255
-            zhan.append([temp_1, temp_2 - 1])
+            # zhan.append([temp_1, temp_2 - 1])
         if (a[1, 2] < high_boundary) and (a[1, 2] > lower_boundary):
             img_yizhi[temp_1, temp_2 + 1] = 255
-            zhan.append([temp_1, temp_2 + 1])
+            # zhan.append([temp_1, temp_2 + 1])
         if (a[2, 0] < high_boundary) and (a[2, 0] > lower_boundary):
             img_yizhi[temp_1 + 1, temp_2 - 1] = 255
-            zhan.append([temp_1 + 1, temp_2 - 1])
+            # zhan.append([temp_1 + 1, temp_2 - 1])
         if (a[2, 1] < high_boundary) and (a[2, 1] > lower_boundary):
             img_yizhi[temp_1 + 1, temp_2] = 255
-            zhan.append([temp_1 + 1, temp_2])
+            # zhan.append([temp_1 + 1, temp_2])
         if (a[2, 2] < high_boundary) and (a[2, 2] > lower_boundary):
             img_yizhi[temp_1 + 1, temp_2 + 1] = 255
-            zhan.append([temp_1 + 1, temp_2 + 1])
+            # zhan.append([temp_1 + 1, temp_2 + 1])
  
     for i in range(img_yizhi.shape[0]):
         for j in range(img_yizhi.shape[1]):
