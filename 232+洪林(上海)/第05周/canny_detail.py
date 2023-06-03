@@ -25,7 +25,7 @@ if __name__ == '__main__':
     Gaussian_filter = np.zeros([dim, dim])  # 存储高斯核，这是数组不是列表了
     print("dim = ", dim)
     tmp = [i-dim//2 for i in range(dim)]  # 生成一个序列
-    print(tmp)
+    print("tmp = ", tmp)
 
     print("# 计算高斯核")
     n1 = 1/(2*math.pi*sigma**2)  # 计算高斯核
@@ -46,10 +46,15 @@ if __name__ == '__main__':
     print("++++++++++++++++++++++++++++++")
     dx, dy = img.shape
     print(img.shape)
-    print("00000000000000000000000000000000000000")
+    print("===============================")
     img_new = np.zeros(img.shape)  # 存储平滑之后的图像，zeros函数得到的是浮点型数据
+    print("img_new")
+    print(img_new)
     tmp = dim//2
+    print("tmp = ", tmp)
     img_pad = np.pad(img, ((tmp, tmp), (tmp, tmp)), 'constant')  # 边缘填补
+    print("# 边缘填补")
+    print(img_pad)
     for i in range(dx):
         for j in range(dy):
             img_new[i, j] = np.sum(img_pad[i:i+dim, j:j+dim]*Gaussian_filter)
@@ -68,6 +73,7 @@ if __name__ == '__main__':
         for j in range(dy):
             img_tidu_x[i, j] = np.sum(img_pad[i:i+3, j:j+3]*sobel_kernel_x)  # x方向
             img_tidu_y[i, j] = np.sum(img_pad[i:i+3, j:j+3]*sobel_kernel_y)  # y方向
+            #【助教 三金】梯度是向量的，在向量空间中向量的模就等于x、y的平方和再开根号
             img_tidu[i, j] = np.sqrt(img_tidu_x[i, j]**2 + img_tidu_y[i, j]**2)
     img_tidu_x[img_tidu_x == 0] = 0.00000001
     angle = img_tidu_y/img_tidu_x
