@@ -115,7 +115,11 @@ if __name__ == '__main__':
  
     # 4、双阈值检测，连接边缘。遍历所有一定是边的点,查看8邻域是否存在有可能是边的点，进栈
     lower_boundary = img_tidu.mean() * 0.5
+    print("img_tidu.mean() : ", img_tidu.mean())
     high_boundary = lower_boundary * 3  # 这里我设置高阈值是低阈值的三倍
+    print("lower_boundary = ", lower_boundary)
+    print("high_boundary = ", high_boundary)
+    print("img_yizhi.shape = ", img_yizhi.shape)
     zhan = []
     for i in range(1, img_yizhi.shape[0]-1):  # 外圈不考虑了
         for j in range(1, img_yizhi.shape[1]-1):
