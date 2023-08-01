@@ -1,4 +1,6 @@
 【12.1】迁移学习&inception.ev4a
+
+conv-bn-relu
 ===========================================================================
 【12.2】inceptionV2.ev4a
 Inception V2 在输入的时候增加了BatchNormalization：在卷积之后，在激活之前
