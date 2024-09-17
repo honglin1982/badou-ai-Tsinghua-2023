@@ -103,7 +103,7 @@ class ImageFactory:
 
 if __name__ == '__main__':
     # 这里将展示各个方式处理图片灰度化或者二值化，任意取即可
-    imf = ImageFactory(path='./lenna.png')
+    imf = ImageFactory(path='../file/lenna.png')
     imf.init_image()  # 原始图片展示
     imf.base_analysis_gray_process()  # 底层原理解析灰度化过程展示
     imf.image_gray_by_cv2()  # cv2 处理图片灰度化
@@ -112,5 +112,6 @@ if __name__ == '__main__':
     imf.img_binary_by_gray()  # rgb2gray 二值化
     # imf.img_binary_by_cv2_gray()  # 自己构思了使用了均值 进行二值化，暂时不可取，还需调参数
     imf.show()
+    # _, img_bw = cv2.threshold(img_gray, 127, 255, cv2.THRESH_BINARY)    # 二值化
     pass
 

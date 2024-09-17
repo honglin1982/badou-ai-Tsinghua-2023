@@ -1,0 +1,39 @@
+MTCNN，Multi-task convolutional neural network（多任务卷积神经网络），
+将人脸区域检测与人脸关键点检测放在了一起，总体可分为P-Net、R-Net、和O-Net三层网络结构。
+它是2016年中国科学院深圳研究院提出的用于人脸检测任务的多任务神经网络模型，
+该模型主要采用了三个级联的网络，采用候选框加分类器的思想，进行快速高效的人脸检测。
+这三个级联的网络分别是快速生成候选窗口的P-Net、进行高精度候选窗口过滤选择的R-Net和生成最终边界框与人脸关键点的O-Net。
+和很多处理图像问题的卷积神经网络模型，该模型也用到了图像金字塔、边框回归、非最大值抑制等技术。
+
+
+数据集下载
+1、WIDER Face (http://shuoyang1213.me/WIDERFACE/) 下载训练数据WIDER Face Training Images，解压的WIDER_train文件夹放置到dataset下。
+    并下载 Face annotations(http://mmlab.ie.cuhk.edu.hk/projects/WIDERFace/support/bbx_annotation/wider_face_split.zip) ，
+    解压把里面的 wider_face_train_bbx_gt.txt 文件放在dataset目录下，
+2、Deep Convolutional Network Cascade for Facial Point Detection （http://mmlab.ie.cuhk.edu.hk/archive/CNN_FacePoint.htm）
+    下载 Training set 并解压，将里面的 lfw_5590 和 net_7876 文件夹放置到dataset下
+3、解压数据集之后，dataset目录下应该有文件夹lfw_5590，net_7876，WIDER_train，
+    有标注文件testImageList.txt，trainImageList.txt，wider_face_train.txt
+
+训练模型
+训练模型一共分为三步，分别是训练PNet模型、训练RNet模型、训练ONet模型，每一步训练都依赖上一步的结果。
+训练PNet模型：
+先执行train_pnet.generate_pnet_data.py构建训练数据集，然后再执行train_pnet.py执行训练，生成PNet.pth，以备RNet训练使用
+
+训练RNet模型：
+先执行train_rnet.generate_rnet_data.py构建训练数据集，然后再执行train_rnet.py执行训练，生成RNet.pth，以备ONet训练使用
+
+训练ONet模型：
+先执行train_onet.generate_onet_data.py构建训练数据集，然后再执行train_onet.py执行训练，生成ONet.pth
+
+
+
+预测
+使用test.img_predict.py 预测执行路径的图片，识别图片中人脸box和关键点，并显示识别结果
+使用test.camera_predict.py 预测相机捕获图像，识别图片中人脸box和关键点，并显示识别结果
+
+
+
+
+
+

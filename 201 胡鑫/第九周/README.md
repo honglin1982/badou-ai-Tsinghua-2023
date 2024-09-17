@@ -1,0 +1,1 @@
+了解深度学习框架的基本使用，pytorch、tensorflow

@@ -1,0 +1,5 @@
+yoloV3:
+1、先使用utils.voc_annotation.py 构建训练和测试数据集
+2、使用 train.py 训练，训练结果存储再model文件夹下
+3、使用 predict.py 预测
+

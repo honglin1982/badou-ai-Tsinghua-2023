@@ -37,8 +37,8 @@ def bilinear_insert(img,dstHeight,dstWidth):
     result_img = np.zeros((dstHeight,dstWidth,chanels),dtype=img.dtype)
     for i in range(dstHeight):
         for j in range(dstWidth):
-            srcX = (i-0.5)*srcHeight/dstWidth - 0.5
-            srcY = (j-0.5)*srcWidth/dstWidth - 0.5
+            srcX = (i+0.5)*srcHeight/dstWidth - 0.5
+            srcY = (j+0.5)*srcWidth/dstWidth - 0.5
 
             srcX_0 = int(np.floor(srcX))
             srcX_1 = int(np.ceil(srcX))

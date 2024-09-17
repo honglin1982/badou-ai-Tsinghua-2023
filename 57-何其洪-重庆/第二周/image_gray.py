@@ -24,7 +24,7 @@ def img2gray(img, func):
 
 
 if __name__ == '__main__':
-    img = cv2.imread('images/lenna.png')
+    img = cv2.imread('../resources/images/lenna.png')
     print("原图：", img, img.shape)
     # 原图
     plt.subplot(221)
